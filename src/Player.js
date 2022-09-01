@@ -1,5 +1,4 @@
 require('fetch-everywhere')
-const qs = require('querystring')
 const pickBy = require('lodash.pickby')
 const Promise = require('bluebird')
 
@@ -50,7 +49,7 @@ module.exports = class Player {
     const query = pickBy({ ...this.config.auth, action, ...filter })
 
     return Promise.resolve()
-      .then(() => fetch(`${this.config.baseUrl}/player_api.php?${qs.stringify(query)}`))
+      .then(() => fetch(`${this.config.baseUrl}/player_api.php?${(new URLSearchParams(query)).toString()}`))
       .then(T => T.json())
       .then(data => {
         if (action && data.hasOwnProperty('user') &&
