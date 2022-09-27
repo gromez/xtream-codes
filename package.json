@@ -1,6 +1,6 @@
 {
   "name": "xtream-codes",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "non official Xtream-Codes IPTV SDK for javascript and NodeJS",
   "author": "Bruno Carvalho de Araujo <brunocarvalhodearaujo@gmail.com>",
   "license": "MIT",
@@ -11,10 +11,10 @@
     "lodash.pickby": "4.6.0"
   },
   "repository": {
-    "url": "https://github.com/brunocarvalhodearaujo/xtream-codes.git",
+    "url": "https://github.com/gromez/xtream-codes.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/brunocarvalhodearaujo/xtream-codes/issues"
+    "url": "https://github.com/gromez/xtream-codes/issues"
   }
 }

@@ -62,14 +62,17 @@ module.exports = class Player {
       })
   }
 
-  getAccountInfo () {
+  /**
+   * @param {boolean} fullResponse
+   */
+  getAccountInfo (fullResponse = false) {
     return this.execute()
       .then(response => {
         if (response.user_info.auth === 0) {
           return Promise.reject(new Error('authentication error'))
         }
 
-        return response.user_info
+        return fullResponse ? response : response.user_info
       })
   }
 
