@@ -76,12 +76,16 @@ module.exports = class Player {
       })
   }
 
-  getLiveStreamCategory () {
+  getLiveCategories () {
     return this.execute('get_live_categories')
   }
 
-  getVODStreamCategories () {
+  getVODCategories () {
     return this.execute('get_vod_categories')
+  }
+
+  getSeriesCategories () {
+    return this.execute('get_series_categories')
   }
 
   /**
@@ -99,19 +103,46 @@ module.exports = class Player {
   }
 
   /**
+   * @param {string} [category]
+   */
+  getSeries (category) {
+    return this.execute('get_series', { category_id: category })
+  }
+
+  /**
    * GET VOD Info
    *
    * @param {number} id This will get info such as video codecs, duration, description, directors for 1 VOD
    */
   getVODInfo (id) {
     if (!id) {
-      return Promise.reject(new Error('Vod Id not defined'))
+      return Promise.reject(new Error('VOD ID not defined'))
     }
 
     return this.execute('get_vod_info', { vod_id: id })
       .then(T => {
         if (T.hasOwnProperty('info') && T.info.length === 0) {
-          return Promise.reject(new Error(`vod with id: ${id} not found`))
+          return Promise.reject(new Error(`VOD with ID ${id} not found`))
+        }
+
+        return T
+      })
+  }
+
+  /**
+   * GET Series Info
+   *
+   * @param {number} id
+   */
+  getSeriesInfo (id) {
+    if (!id) {
+      return Promise.reject(new Error('Series ID not defined'))
+    }
+
+    return this.execute('get_series_info', { series_id: id })
+      .then(T => {
+        if (T.hasOwnProperty('info') && T.info.length === 0) {
+          return Promise.reject(new Error(`Series with ID ${id} not found`))
         }
 
         return T
